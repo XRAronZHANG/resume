@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>张小然 · 个人简历</title>
+    <style>
+        /* ===== Reset & Base ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #750F6D;
+            --primary-dark: #5A0C55;
+            --primary-light: #9B3A92;
+            --purple-subtle: #F5F0FF;
+            --accent: #DDA300;
+            --accent-light: #FFF8E6;
+            --bg: #FAF9FC;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+            --text-secondary: #64748b;
+            --border: #E8E0F0;
+            --radius: 12px;
+            --shadow: 0 1px 3px rgba(117,15,109,.06), 0 1px 2px rgba(117,15,109,.04);
+            --shadow-hover: 0 10px 25px -5px rgba(117,15,109,.12), 0 8px 10px -6px rgba(117,15,109,.04);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== Header / Hero ===== */
+        header.hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: #fff;
+            padding: 52px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header.hero::after {
+            content: '';
+            position: absolute;
+            top: -60%;
+            right: -8%;
+            width: 380px;
+            height: 380px;
+            background: rgba(255,255,255,.04);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .hero-name {
+            font-size: 34px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+
+        .hero-tagline {
+            font-size: 15px;
+            opacity: .82;
+            font-weight: 400;
+        }
+
+        .hero-contact {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 22px;
+            font-size: 14px;
+            opacity: .9;
+            margin-top: 10px;
+        }
+
+        .hero-contact a {
+            color: #fff;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: opacity .2s;
+        }
+        .hero-contact a:hover { opacity: .7; }
+
+        /* ===== Lang Toggle ===== */
+        .lang-toggle-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .lang-btn {
+            background: rgba(255,255,255,.15);
+            border: 1px solid rgba(255,255,255,.3);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .25s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .lang-btn:hover {
+            background: rgba(255,255,255,.25);
+        }
+
+        .lang-btn.active {
+            background: rgba(255,255,255,.92);
+            color: var(--primary);
+            border-color: transparent;
+        }
+
+        .lang-divider {
+            color: rgba(255,255,255,.35);
+            font-size: 13px;
+            font-weight: 300;
+        }
+
+        /* ===== Filter Bar ===== */
+        .filter-bar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 0;
+        }
+
+        .filter-bar .container {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            border: 1px solid var(--border);
+            background: transparent;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all .25s ease;
+            white-space: nowrap;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary-light);
+            color: var(--primary-light);
+            background: var(--purple-subtle);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        /* ===== Section Title ===== */
+        .section-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 40px 0 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #E8DDF0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .emoji { font-size: 24px; }
+
+        /* ===== Cards ===== */
+        .cards-wrapper { margin: 28px 0 10px; }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 28px 30px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+            transition: all .3s ease;
+            animation: fadeUp .4s ease both;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-hover);
+            border-color: #D5C8E0;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-title .emoji { font-size: 18px; flex-shrink: 0; }
+
+        .card-subtitle {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--primary-light);
+            margin-bottom: 4px;
+        }
+
+        .card-meta {
+            font-size: 13px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card-body {
+            font-size: 14px;
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        .card-body p { margin-bottom: 6px; }
+
+        .card-body ul { list-style: none; padding: 0; }
+
+        .card-body li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 5px;
+        }
+
+        .card-body li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary-light);
+            font-weight: 700;
+        }
+
+        .card-body .highlight {
+            display: inline-block;
+            background: #EDE4F5;
+            color: var(--primary);
+            font-weight: 600;
+            padding: 0 10px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .card-body .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .card-body .tag {
+            background: var(--purple-subtle);
+            color: var(--primary-light);
+            font-size: 12px;
+            padding: 2px 12px;
+            border-radius: 999px;
+            font-weight: 500;
+        }
+
+        .achievement {
+            background: #FEFCE8;
+            border-left: 3px solid var(--accent);
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #713F12;
+        }
+
+        .achievement strong { font-weight: 700; }
+
+        /* ===== Personal Summary ===== */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .summary-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 22px 24px;
+            box-shadow: var(--shadow);
+            transition: box-shadow .3s ease;
+        }
+
+        .summary-item:hover { box-shadow: var(--shadow-hover); }
+
+        .summary-item .s-icon { font-size: 24px; margin-bottom: 8px; display: block; }
+
+        .summary-item h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+
+        .summary-item p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ===== Lang Visibility ===== */
+        .lang-en { display: none; }
+        body.show-en .lang-cn { display: none; }
+        body.show-en .lang-en { display: inline; }
+        body.show-en .block-lang-en { display: block; }
+        body.show-en .block-lang-cn { display: none; }
+        body:not(.show-en) .block-lang-en { display: none; }
+        body:not(.show-en) .block-lang-cn { display: block; }
+
+        /* ===== Filter Visibility ===== */
+        .category-section.hidden { display: none; }
+
+        /* ===== Footer ===== */
+        footer {
+            text-align: center;
+            padding: 32px 0;
+            color: var(--text-secondary);
+            font-size: 13px;
+            border-top: 1px solid var(--border);
+            margin-top: 20px;
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 640px) {
+            header.hero { padding: 36px 0 28px; }
+            .hero-name { font-size: 26px; }
+            .hero-inner { flex-direction: column; align-items: flex-start; }
+            .card { padding: 20px; }
+            .card-header { flex-direction: column; }
+            .card-meta { white-space: normal; }
+            .filter-btn { font-size: 13px; padding: 6px 14px; }
+            .summary-grid { grid-template-columns: 1fr; }
+            .lang-toggle-wrap { align-self: flex-end; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header class="hero">
+    <div class="container">
+        <div class="hero-inner">
+            <div>
+                <h1 class="hero-name">
+                    <span class="lang-cn">📄 张小然</span>
+                    <span class="lang-en">📄 Zhang Xiaoran</span>
+                </h1>
+                <p class="hero-tagline">
+                    <span class="lang-cn">市场营销 · AI与量化营销 · 海外社媒运营</span>
+                    <span class="lang-en">Marketing · AI & Quantitative Marketing · Overseas Social Media</span>
+                </p>
+                <div class="hero-contact">
+                    <a href="tel:+8613906435287">📞 +86 139-0643-5287</a>
+                    <a href="mailto:zhangxiaoran2002@outlook.com">✉️ zhangxiaoran2002@outlook.com</a>
+                    <span>💬 <span class="lang-cn">微信：zhangxiaoran01</span><span class="lang-en">WeChat: zhangxiaoran01</span></span>
+                </div>
+            </div>
+            <div class="lang-toggle-wrap">
+                <button class="lang-btn active" data-lang="cn">中文</button>
+                <span class="lang-divider">|</span>
+                <button class="lang-btn" data-lang="en">EN</button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ===== Filter Bar ===== -->
+<nav class="filter-bar" id="filterBar">
+    <div class="container">
+        <button class="filter-btn active" data-filter="all">🔍 <span class="lang-cn">全部</span><span class="lang-en">All</span></button>
+        <button class="filter-btn" data-filter="education">🎓 <span class="lang-cn">教育经历</span><span class="lang-en">Education</span></button>
+        <button class="filter-btn" data-filter="experience">💼 <span class="lang-cn">实习经历</span><span class="lang-en">Experience</span></button>
+        <button class="filter-btn" data-filter="project">📊 <span class="lang-cn">项目经历</span><span class="lang-en">Projects</span></button>
+        <button class="filter-btn" data-filter="campus">🏛️ <span class="lang-cn">校园活动</span><span class="lang-en">Campus</span></button>
+        <button class="filter-btn" data-filter="summary">📌 <span class="lang-cn">个人总结</span><span class="lang-en">Summary</span></button>
+    </div>
+</nav>
+
+<main class="container">
+
+    <!-- ===== 教育经历 / Education ===== -->
+    <section class="category-section" data-category="education">
+        <h2 class="section-title"><span class="emoji">🎓</span> <span class="lang-cn">教育经历</span><span class="lang-en">Education</span></h2>
+
+        <div class="cards-wrapper">
+            <!-- 硕士 / Master -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title"><span class="emoji">📖</span> <span class="lang-cn">市场营销 · AI与量化营销</span><span class="lang-en">MSc in Marketing · AI & Quantitative Marketing</span></div>
+                        <div class="card-subtitle">
+                            <span class="lang-cn">香港中文大学 · 硕士</span>
+                            <span class="lang-en">The Chinese University of Hong Kong · Master</span>
+                        </div>
+                    </div>
+                    <div class="card-meta">📅 2025.08 – 2026.10</div>
+                </div>
+                <div class="card-body">
+                    <div class="block-lang-cn">
+                        <p>选择"AI与量化营销方向"深入学习，接触 Openclaw 等 AI 工具；课程中接触 Google Analytics、Google API（进行情感分析、图片/视频分析）。</p>
+                        <p>培养 Python、R 相关编程语言的使用能力，学习使用 Trae 实现编程自动化。</p>
+                        <div class="tag-list">
+                            <span class="tag">📊 市场营销分析</span>
+                            <span class="tag">🤖 机器学习</span>
+                            <span class="tag">📈 数字营销</span>
+                            <span class="tag">🧠 消费者分析</span>
+                            <span class="tag">📱 AI与社交媒体分析</span>
+                            <span class="tag">🧾 消费者行为</span>
+                        </div>
+                    </div>
+                    <div class="block-lang-en">
+                        <p>Selected the "AI & Quantitative Marketing" track, gaining hands-on experience with AI tools including Openclaw. Coursework includes Google Analytics, Google API for sentiment analysis and image/video analysis.</p>
+                        <p>Developed proficiency in Python and R programming, and learned to leverage Trae for programming automation.</p>
+                        <div class="tag-list">
+                            <span class="tag">📊 Marketing Analytics</span>
+                            <span class="tag">🤖 Machine Learning</span>
+                            <span class="tag">📈 Digital Marketing</span>
+                            <span class="tag">🧠 Consumer Analytics</span>
+                            <span class="tag">📱 AI & Social Media Analytics</span>
+                            <span class="tag">🧾 Consumer Behavior</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 本科 / Bachelor -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title"><span class="emoji">🎯</span> <span class="lang-cn">市场营销</span><span class="lang-en">BBA in Marketing</span></div>
+                        <div class="card-subtitle">
+                            <span class="lang-cn">香港中文大学（深圳）· 工商管理学学士</span>
+                            <span class="lang-en">The Chinese University of Hong Kong (Shenzhen) · Bachelor of Business Administration</span>
+                        </div>
+                    </div>
+                    <div class="card-meta">📅 2021.09 – 2025.07</div>
+                </div>
+                <div class="card-body">
+                    <div class="block-lang-cn">
+                        <p><span class="highlight">🏆 荣誉甲等毕业</span> 毕业时主修科目平均绩点专业内排名第 3（共 102 人），连续两年入选院长荣誉录。</p>
+                        <p><strong>📚 核心课程：</strong>营销管理、整合营销传播、消费者行为、战略品牌管理、社交媒体营销、战略营销、市场分析/市场研究、定价策略、Python、ESG 等。</p>
+                        <p><strong>💻 数据分析：</strong>熟练运用 Excel 进行数据分析，具备使用 Python、SPSS 进行营销数据分析和商业分析的实际经验，对 SQL 有基本了解。</p>
+                    </div>
+                    <div class="block-lang-en">
+                        <p><span class="highlight">🏆 First Class Honours</span> Ranked 3rd out of 102 students in GPA within major, named to the Dean's List for two consecutive years.</p>
+                        <p><strong>📚 Core Courses:</strong> Marketing Management, Integrated Marketing Communications, Consumer Behavior, Strategic Brand Management, Social Media Marketing, Strategic Marketing, Market Analysis/Research, Pricing Strategy, Python, ESG.</p>
+                        <p><strong>💻 Data Analytics:</strong> Proficient in Excel for data analysis; hands-on experience with Python and SPSS for marketing and business analytics; foundational knowledge of SQL.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 实习经历 / Experience ===== -->
+    <section class="category-section" data-category="experience">
+        <h2 class="section-title"><span class="emoji">💼</span> <span class="lang-cn">实习工作经历</span><span class="lang-en">Internship Experience</span></h2>
+
+        <div class="cards-wrapper">
+            <!-- 得物 / POIZON -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title"><span class="emoji">🌐</span> <span class="lang-cn">海外社媒（品牌）运营</span><span class="lang-en">Overseas Social Media (Brand) Operations</span></div>
+                        <div class="card-subtitle">
+                            <span class="lang-cn">上海得物信息集团有限公司 · 国际事业部</span>
+                            <span class="lang-en">POIZON Global · International Business Division</span>
+                        </div>
+                    </div>
+                    <div class="card-meta">📅 2024.06 – 2024.08</div>
+                </div>
+                <div class="card-body">
+                    <div class="block-lang-cn">
+                        <ul>
+                            <li><strong>📝 内容策划：</strong>构思并设计每日社交媒体内容，涵盖 Instagram、Facebook、YouTube 等海外平台，建立 POIZON Global 品牌日历，确保内容与品牌战略高度一致。</li>
+                            <li><strong>🎬 活动执行：</strong>参与 POIZON 品牌美国地区线下营销活动的策划与设计，独立完成活动宣传视频剪辑与海报制作。</li>
+                            <li><strong>🤝 团队协作：</strong>与公关团队合作，高效处理 2000+ 条负面评论；与客户团队配合，每日解决社媒后台客户投诉；与采购团队协作完成奖品寄送及月度社媒样品分发。</li>
+                            <li><strong>📊 数据分析：</strong>定期更新社媒平台后台数据看板，进行多维度数据分析（Meta Business 数据、Google Analytics 数据等）与竞争对手研究。</li>
+                        </ul>
+                        <div class="achievement">
+                            <strong>📈 成果：</strong>三个月内实现点击率（CTR）提升 <strong>10%</strong>，互动率（ER）稳定在 0.8%，Instagram 粉丝数增长 <strong>7000+</strong>，显著提升品牌在海外市场的曝光与影响力。
+                        </div>
+                    </div>
+                    <div class="block-lang-en">
+                        <ul>
+                            <li><strong>📝 Content Strategy:</strong> Designed daily social media content for Instagram, Facebook, YouTube and other global platforms; established the POIZON Global content calendar aligned with brand strategy.</li>
+                            <li><strong>🎬 Event Execution:</strong> Participated in planning POIZON's US offline marketing events; independently produced promotional videos and posters.</li>
+                            <li><strong>🤝 Team Collaboration:</strong> Worked with PR team to manage 2,000+ negative comments; coordinated with customer service to resolve daily social media complaints; collaborated with procurement for prize shipping and monthly sample distribution.</li>
+                            <li><strong>📊 Data Analytics:</strong> Regularly updated social media dashboards, conducted multi-dimensional analysis (Meta Business, Google Analytics) and competitive research.</li>
+                        </ul>
+                        <div class="achievement">
+                            <strong>📈 Results:</strong> Achieved a <strong>10%</strong> CTR increase within three months, maintained ER at 0.8%, grew Instagram followers by <strong>7,000+</strong>, significantly boosting brand visibility and influence in overseas markets.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- OPPO -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title"><span class="emoji">📱</span> <span class="lang-cn">海外用户运营</span><span class="lang-en">Overseas User Operations</span></div>
+                        <div class="card-subtitle">
+                            <span class="lang-cn">OPPO 广东通讯移动有限公司 · 海外电商管理部</span>
+                            <span class="lang-en">OPPO Guangdong Mobile Communications · Overseas E-commerce Management</span>
+                        </div>
+                    </div>
+                    <div class="card-meta">📅 2023.05 – 2023.08</div>
+                </div>
+                <div class="card-body">
+                    <div class="block-lang-cn">
+                        <ul>
+                            <li><strong>👥 用户扩展：</strong>通过 My OPPO APP 等渠道开展新品与社群宣传，3 个月内私域客户总数从 <strong>34 万</strong>提升至 <strong>45 万</strong>，有效客户数从 28 万增长至 37 万，客户转化数从 1.5 万增至 2.3 万。</li>
+                            <li><strong>📊 数据优化：</strong>对私域项目数据、转化数量及来源渠道进行深度分析，制作日报、周报、月报；建立高效数据看板，提升数据分析效率。</li>
+                            <li><strong>💬 社群管理：</strong>负责私域社群内容准备与运营管理，策划社群活动，协助摄影社群人数增加 30+ 人，群活跃度提升 20%。</li>
+                            <li><strong>🚀 新品推广：</strong>全程参与新品旗舰手机私域运营，新品上市后私域带来 <strong>124 位购机新用户</strong>（占商城总数 21%），平均点击率达 8.7%，社群触达 4.6 万余人。</li>
+                        </ul>
+                    </div>
+                    <div class="block-lang-en">
+                        <ul>
+                            <li><strong>👥 User Expansion:</strong> Promoted new products and community through My OPPO APP and other channels. Grew private-domain customer base from <strong>340K</strong> to <strong>450K</strong> in 3 months; active users increased from 280K to 370K; conversions rose from 15K to 23K.</li>
+                            <li><strong>📊 Data Optimization:</strong> Conducted in-depth analysis of private-domain project data, conversion metrics, and source channels; produced daily, weekly, and monthly reports; built efficient data dashboards.</li>
+                            <li><strong>💬 Community Management:</strong> Managed private-domain community content and engagement; organized community events; helped the photography community grow by 30+ members with 20% increased activity.</li>
+                            <li><strong>🚀 New Product Promotion:</strong> Led private-domain marketing for a flagship smartphone launch, driving <strong>124 new purchasers</strong> (21% of total store sales), achieving 8.7% average CTR, reaching 46K+ users via community channels.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 项目经历 / Projects ===== -->
+    <section class="category-section" data-category="project">
+        <h2 class="section-title"><span class="emoji">📊</span> <span class="lang-cn">项目经历</span><span class="lang-en">Projects & Achievements</span></h2>
+
+        <div class="cards-wrapper">
+            <!-- 华客科技 / Vocust -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title"><span class="emoji">🏨</span> <span class="lang-cn">暑期特别支持计划 · 研究助理</span><span class="lang-en">Summer Support Program · Research Assistant</span></div>
+                        <div class="card-subtitle">
+                            <span class="lang-cn">华客科技 Vocust</span>
+                            <span class="lang-en">Vocust × Stanford GSB</span>
+                        </div>
+                    </div>
+                    <div class="card-meta">📅 2025.08 – 2025.10</div>
+                </div>
+                <div class="card-body">
+                    <div class="block-lang-cn">
+                        <ul>
+                            <li>参与华客科技 × 斯坦福大学商学院暑期特别支持计划落地，统筹远程助理团队、酒店合作方及斯坦福研究团队三方协作。</li>
+                            <li>完成为期八周的酒店行业收益优化专项服务，覆盖酒店竞对数据监测、策略输出全流程。</li>
+                            <li>负责项目核心运营工作，制定每日数据推送 SOP，协调团队为合作酒店提供竞对房价/销量监测、定制化收益策略建议。</li>
+                            <li>建立项目数据安全与隐私管理机制，确保合作酒店运营数据仅用于项目评估与研究，顺利完成全部合作酒店服务交付。</li>
+                        </ul>
+                    </div>
+                    <div class="block-lang-en">
+                        <ul>
+                            <li>Participated in the Vocust × Stanford Graduate School of Business Summer Special Support Program, coordinating tri-party collaboration among the remote assistant team, hotel partners, and Stanford researchers.</li>
+                            <li>Delivered an eight-week hospitality revenue optimization project covering competitor monitoring and strategy formulation.</li>
+                            <li>Managed core operations: developed daily data推送 SOPs, coordinated competitor price/sales monitoring, and provided customized revenue strategy recommendations.</li>
+                            <li>Established data security and privacy protocols to ensure hotel operational data was used exclusively for project evaluation and research; successfully completed service delivery for all partner hotels.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 港中深研究助理 / CUHKSZ RA -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title"><span class="emoji">🧑‍🏫</span> <span class="lang-cn">研究助理 · 经管学院</span><span class="lang-en">Research Assistant · SME</span></div>
+                        <div class="card-subtitle">
+                            <span class="lang-cn">香港中文大学（深圳）</span>
+                            <span class="lang-en">The Chinese University of Hong Kong (Shenzhen)</span>
+                        </div>
+                    </div>
+                    <div class="card-meta">📅 2025.01 – 2025.05</div>
+                </div>
+                <div class="card-body">
+                    <div class="block-lang-cn">
+                        <ul>
+                            <li>协助张强教授准备"市场分析"课程内容，负责作业批改，确保教学材料与评估标准的准确性与一致性。</li>
+                            <li>担任课程本科生助教，为学生提供专业答疑与学习指导。</li>
+                            <li>协助教授进行 Python 代码修改，优化数据分析工具与流程。</li>
+                        </ul>
+                    </div>
+                    <div class="block-lang-en">
+                        <ul>
+                            <li>Assisted Professor Zhang Qiang in preparing course materials for "Market Analysis"; graded assignments to ensure accuracy and consistency in evaluation standards.</li>
+                            <li>Served as a teaching assistant for undergraduate students, providing academic guidance and support.</li>
+                            <li>Supported the professor in Python code modification and optimization of data analysis tools and workflows.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 欧莱雅 / L'Oréal -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title"><span class="emoji">💄</span> L'Oréal BRANDSTORM 2025</div>
+                        <div class="card-subtitle">
+                            <span class="lang-cn">中国大陆赛区 TOP 200</span>
+                            <span class="lang-en">Mainland China Top 200</span>
+                        </div>
+                    </div>
+                    <div class="card-meta">📅 2025.01 – 2025.03</div>
+                </div>
+                <div class="card-body">
+                    <div class="block-lang-cn">
+                        <p>与队友紧密合作，进行创意创新，设计欧莱雅男士"All in one"智能护肤镜，获得大陆赛区 TOP 200 荣誉。</p>
+                    </div>
+                    <div class="block-lang-en">
+                        <p>Collaborated closely with teammates on innovative concept design for L'Oréal Men's "All in One" smart skincare mirror, earning a Top 200 finish in the Mainland China competition.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HSBC/HKU 商赛 -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title"><span class="emoji">🏆</span> HSBC/HKU <span class="lang-cn">商业案例分析大赛</span><span class="lang-en">Business Case Competition</span></div>
+                        <div class="card-subtitle">
+                            <span class="lang-cn">中国大陆区决赛 · 亚军</span>
+                            <span class="lang-en">Mainland China Final · 1st Runner-Up</span>
+                        </div>
+                    </div>
+                    <div class="card-meta">📅 2024.03 – 2024.05</div>
+                </div>
+                <div class="card-body">
+                    <div class="block-lang-cn">
+                        <ul>
+                            <li>在中国南区初赛中获得第二名，成功晋级中国大陆赛区决赛。</li>
+                            <li>在中国大陆区决赛中获 <span class="highlight">亚军</span>，成功晋级亚太区决赛。</li>
+                            <li>前往香港代表中国大陆区参加亚太区决赛，获得 <span class="highlight">小组第二名</span>。</li>
+                        </ul>
+                    </div>
+                    <div class="block-lang-en">
+                        <ul>
+                            <li>Placed 2nd in the South China regional round, advancing to the Mainland China final.</li>
+                            <li>Earned <span class="highlight">1st Runner-Up</span> in the Mainland China final, qualifying for the Asia-Pacific final.</li>
+                            <li>Represented Mainland China at the Asia-Pacific final in Hong Kong, achieving <span class="highlight">2nd place</span> in the group stage.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 实习求职联盟 -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title"><span class="emoji">🤝</span> <span class="lang-cn">互联网行业社群会长</span><span class="lang-en">Internet Industry Community President</span></div>
+                        <div class="card-subtitle">
+                            <span class="lang-cn">香港中文大学（深圳）经管学院 · 实习求职联盟</span>
+                            <span class="lang-en">CUHK (Shenzhen) SME · Internship & Career Alliance</span>
+                        </div>
+                    </div>
+                    <div class="card-meta">📅 2023.07 – 2024.07</div>
+                </div>
+                <div class="card-body">
+                    <div class="block-lang-cn">
+                        <ul>
+                            <li><strong>🏗️ 社群搭建：</strong>组建并运营学院实习求职联盟互联网行业求职信息分享群，覆盖学生 <strong>600+</strong> 人。</li>
+                            <li><strong>📋 活动策划：</strong>组织 2 场互联网行业实习经验分享会与招聘分享会，吸引约 <strong>200 名</strong>学生参与。</li>
+                        </ul>
+                    </div>
+                    <div class="block-lang-en">
+                        <ul>
+                            <li><strong>🏗️ Community Building:</strong> Founded and managed the Internet Industry job information sharing group, reaching <strong>600+</strong> students.</li>
+                            <li><strong>📋 Event Planning:</strong> Organized 2 internship experience and recruitment sharing sessions, attracting approximately <strong>200</strong> participants.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 校园活动 / Campus ===== -->
+    <section class="category-section" data-category="campus">
+        <h2 class="section-title"><span class="emoji">🏛️</span> <span class="lang-cn">校园组织及活动经历</span><span class="lang-en">Campus Organizations & Activities</span></h2>
+
+        <div class="cards-wrapper">
+            <!-- 学生代表 -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title"><span class="emoji">🗳️</span> <span class="lang-cn">学生代表</span><span class="lang-en">Student Representative</span></div>
+                        <div class="card-subtitle">
+                            <span class="lang-cn">香港中文大学（深圳）学生代表大会</span>
+                            <span class="lang-en">CUHK (Shenzhen) Student Congress</span>
+                        </div>
+                    </div>
+                    <div class="card-meta">📅 2023.09 – 2025.05</div>
+                </div>
+                <div class="card-body">
+                    <div class="block-lang-cn">
+                        <ul>
+                            <li><strong>🔗 沟通桥梁：</strong>搭建学生与学校之间的沟通桥梁，积极收集并反馈学生日常问题。</li>
+                            <li><strong>🚌 交通优化：</strong>推动优化学校校园巴士路线，成功推动开通学校连接地铁站的专线公交。</li>
+                            <li><strong>🛡️ 安全提升：</strong>协助解决多起学校食堂食品安全问题，推动改进措施落地。</li>
+                        </ul>
+                    </div>
+                    <div class="block-lang-en">
+                        <ul>
+                            <li><strong>🔗 Bridge Building:</strong> Served as a liaison between students and the university, collecting and relaying student concerns to improve campus life.</li>
+                            <li><strong>🚌 Transportation:</strong> Advocated for optimized campus bus routes and successfully pushed for a dedicated shuttle connecting campus to the MTR station.</li>
+                            <li><strong>🛡️ Safety Advocacy:</strong> Assisted in resolving multiple cafeteria food safety issues and drove implementation of corrective measures.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 融媒体干事 -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title"><span class="emoji">📹</span> <span class="lang-cn">融媒体干事</span><span class="lang-en">Media Convergence Officer</span></div>
+                        <div class="card-subtitle">
+                            <span class="lang-cn">香港中文大学（深圳）学生会</span>
+                            <span class="lang-en">CUHK (Shenzhen) Student Union</span>
+                        </div>
+                    </div>
+                    <div class="card-meta">📅 2021.09 – 2023.05</div>
+                </div>
+                <div class="card-body">
+                    <div class="block-lang-cn">
+                        <ul>
+                            <li>负责学生会内部日常活动的图片与视频拍摄，制作宣传视频。</li>
+                            <li>参与策划并执行两个全校范围的文创宣发活动，活动预计覆盖校内 <strong>1 万人</strong>。</li>
+                            <li>代表学生会出访香港中文大学，与香港中文大学内地生联合会同学进行面对面交流。</li>
+                        </ul>
+                    </div>
+                    <div class="block-lang-en">
+                        <ul>
+                            <li>Managed photography and videography for student union events; produced promotional videos.</li>
+                            <li>Co-planned and executed two campus-wide cultural and creative campaigns, reaching an estimated <strong>10,000</strong> students.</li>
+                            <li>Represented the Student Union on an official visit to CUHK Hong Kong campus, engaging in exchanges with the Mainland Students Association.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 学生大使团 -->
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-title"><span class="emoji">🎤</span> <span class="lang-cn">活动部部长</span><span class="lang-en">Activities Department Director</span></div>
+                        <div class="card-subtitle">
+                            <span class="lang-cn">香港中文大学（深圳）学生大使团</span>
+                            <span class="lang-en">CUHK (Shenzhen) Student Ambassador Group</span>
+                        </div>
+                    </div>
+                    <div class="card-meta">📅 2021.09 – 2023.05</div>
+                </div>
+                <div class="card-body">
+                    <div class="block-lang-cn">
+                        <ul>
+                            <li><strong>📋 活动统筹：</strong>作为 2022-2023 学年校园向导团队负责人，统筹安排每周例行参访及临时参访活动。</li>
+                            <li><strong>🗣️ 校园讲解：</strong>为来访宾客详细介绍学校概况，带领参观并进行专业讲解。</li>
+                            <li><strong>⚙️ 流程优化：</strong>细化参观流程，制作纸质参观指南，提供标准化支持。</li>
+                            <li><strong>🧑‍🏫 团队培训：</strong>培训新任校园向导 <strong>40+</strong> 名，确保团队可持续发展。</li>
+                        </ul>
+                    </div>
+                    <div class="block-lang-en">
+                        <ul>
+                            <li><strong>📋 Event Coordination:</strong> Led the campus tour team for the 2022-23 academic year, managing weekly scheduled and ad-hoc visits.</li>
+                            <li><strong>🗣️ Campus Tours:</strong> Delivered professional guided tours introducing the university's history and highlights to visiting guests.</li>
+                            <li><strong>⚙️ Process Improvement:</strong> Standardized tour procedures and created printed visitor guides to enhance service quality.</li>
+                            <li><strong>🧑‍🏫 Team Training:</strong> Trained <strong>40+</strong> new campus guides, ensuring sustainable team development.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 个人总结 / Summary ===== -->
+    <section class="category-section" data-category="summary">
+        <h2 class="section-title"><span class="emoji">📌</span> <span class="lang-cn">个人总结</span><span class="lang-en">Personal Summary</span></h2>
+
+        <div class="summary-grid">
+            <div class="summary-item">
+                <span class="s-icon">📱</span>
+                <h4><span class="lang-cn">平台洞察</span><span class="lang-en">Platform Insights</span></h4>
+                <div class="block-lang-cn">
+                    <p>作为重度社交软件使用者，长期活跃于微信、QQ、小红书、抖音、哔哩哔哩、知乎等平台，对各平台用户特点、内容生态及运营策略有深入理解。</p>
+                </div>
+                <div class="block-lang-en">
+                    <p>Heavy user of social platforms including WeChat, QQ, Xiaohongshu, Douyin, Bilibili, and Zhihu, with deep understanding of platform-specific user behavior, content ecosystems, and operational strategies.</p>
+                </div>
+            </div>
+            <div class="summary-item">
+                <span class="s-icon">🔥</span>
+                <h4><span class="lang-cn">热点追踪</span><span class="lang-en">Trend Tracking</span></h4>
+                <div class="block-lang-cn">
+                    <p>热爱追寻实时热点，善于捕捉市场趋势与用户需求变化，具备敏锐的洞察力与快速反应能力，能够将热点与品牌传播策略有效结合。</p>
+                </div>
+                <div class="block-lang-en">
+                    <p>Passionate about tracking real-time trends with keen market awareness and quick responsiveness; skilled at integrating trending topics with brand communication strategies.</p>
+                </div>
+            </div>
+            <div class="summary-item">
+                <span class="s-icon">💻</span>
+                <h4><span class="lang-cn">行业关注</span><span class="lang-en">Industry Focus</span></h4>
+                <div class="block-lang-cn">
+                    <p>特别关注科技数码领域，乐于了解科技数码圈相关产品新闻，日常关注市场分析类文章、时事新闻热点及品牌发展方向。</p>
+                </div>
+                <div class="block-lang-en">
+                    <p>Actively follows the tech and digital products space; regularly reads market analysis articles, current affairs, and brand development trends to continuously build industry knowledge.</p>
+                </div>
+            </div>
+            <div class="summary-item">
+                <span class="s-icon">✍️</span>
+                <h4><span class="lang-cn">内容创作</span><span class="lang-en">Content Creation</span></h4>
+                <div class="block-lang-cn">
+                    <p>基于对社交平台的深度使用与热点追踪，能够快速产出符合平台调性且具有传播价值的内容，提升品牌曝光与用户互动效果。</p>
+                </div>
+                <div class="block-lang-en">
+                    <p>Combining deep platform knowledge with trend awareness, capable of producing platform-native, highly shareable content that drives brand visibility and user engagement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container">
+        <p>© 2026 <span class="lang-cn">张小然 · 个人简历网站</span><span class="lang-en">Zhang Xiaoran · Resume Website</span></p>
+    </div>
+</footer>
+
+<!-- ===== JavaScript ===== -->
+<script>
+(function() {
+    // ---- Language Toggle ----
+    const langBtns = document.querySelectorAll('.lang-btn');
+    const body = document.body;
+
+    function setLang(lang) {
+        langBtns.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+        if (lang === 'en') {
+            body.classList.add('show-en');
+        } else {
+            body.classList.remove('show-en');
+        }
+        localStorage.setItem('resume-lang', lang);
+    }
+
+    langBtns.forEach(btn => {
+        btn.addEventListener('click', () => setLang(btn.dataset.lang));
+    });
+
+    // Restore saved language preference
+    const savedLang = localStorage.getItem('resume-lang');
+    if (savedLang === 'en') setLang('en');
+
+    // ---- Filter Tabs ----
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const sections = document.querySelectorAll('.category-section');
+
+    function filterCategory(category) {
+        filterBtns.forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.filter === category);
+        });
+
+        sections.forEach(section => {
+            const matches = category === 'all' || section.dataset.category === category;
+            if (matches) {
+                section.classList.remove('hidden');
+                section.style.animation = 'none';
+                section.offsetHeight;
+                const cards = section.querySelectorAll('.card, .summary-item');
+                cards.forEach((card, i) => {
+                    card.style.animation = 'none';
+                    card.offsetHeight;
+                    card.style.animation = `fadeUp .4s ease ${i * 0.08}s both`;
+                });
+            } else {
+                section.classList.add('hidden');
+            }
+        });
+    }
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => filterCategory(btn.dataset.filter));
+    });
+
+    filterCategory('all');
+})();
+</script>
+
+</body>
+</html>
